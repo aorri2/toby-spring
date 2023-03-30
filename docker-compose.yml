@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  db:
+    image: mysql:8.0.30
+    restart: always
+    ports:
+      - "33066:33066"
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: springbook
+      MYSQL_USER: user
+      MYSQL_PASSWORD: 1234
+      TZ: Asia/Seoul
