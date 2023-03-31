@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.demo.user.dao.SimpleConnectionMaker;
 import com.example.demo.user.dao.UserDao;
 import com.example.demo.user.domain.User;
 
