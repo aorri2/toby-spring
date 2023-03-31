@@ -2,19 +2,15 @@ package com.example.demo;
 
 import java.sql.SQLException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.example.demo.user.dao.SimpleConnectionMaker;
 import com.example.demo.user.dao.UserDao;
 import com.example.demo.user.domain.User;
 
 @SpringBootApplication
 public class DemoApplication {
-
-
-
 
 	public static void main(String[] args) throws SQLException, ClassNotFoundException {
 		UserDao dao = new UserDao();

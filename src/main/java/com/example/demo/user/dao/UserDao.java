@@ -1,7 +1,6 @@
 package com.example.demo.user.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,8 +9,14 @@ import com.example.demo.user.domain.User;
 
 public class UserDao {
 
+	private SimpleConnectionMaker simpleConnectionMaker;
+
+	public UserDao() {
+		this.simpleConnectionMaker = new SimpleConnectionMaker();
+	}
+
 	public void add(User user) throws ClassNotFoundException, SQLException {
-		Connection c = getConnection();
+		Connection c = simpleConnectionMaker.makeNewConnection();
 
 		PreparedStatement ps = c.prepareStatement(
 			"insert into users(id,name,password) values (?,?,?)"
@@ -27,15 +32,8 @@ public class UserDao {
 		c.close();
 	}
 
-	private Connection getConnection() throws ClassNotFoundException, SQLException {
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection c = DriverManager.getConnection(
-			"jdbc:mysql://localhost/springbook", "root", "1234");
-		return c;
-	}
-
 	public User get(String id) throws ClassNotFoundException, SQLException {
-		Connection c = getConnection();
+		Connection c = simpleConnectionMaker.makeNewConnection();
 
 		PreparedStatement ps = c.prepareStatement(
 			"select * from users where id = ?"
